@@ -1,69 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>JSP - Hello World</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-<style>
-    #testDiv1 {
-        margin: 10px;
-        width: 100px;
-        height: 100px;
-        background-color: black;
-    }
-
-    .disNone {
-        display: none;
-    }
-</style>
-<h1><%="Hello World!"%>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-<%
-    String str1 = "JSP";
-    String str2 = "Hello World";
-%>
-<%!
-    int i = 100;
-
-    public int add(int a, int b) {
-        return a + b;
-    }
-%>
-<h2><%=str1%>테스트페이지</h2>
-<input type="color">
-<button id="btn1">버튼임</button>
-<div id="testDiv1"></div>
-<button id="delBtn">뿅!</button>
-<script>
-    <%
-    String a = "강경민";
-    %>
-
-    let name = "<%=a%>";
-    let b = 0;
-    console.log(name);
-    document.querySelector('#btn1').addEventListener("click", () => {
-        stmout("helloWorld");
-    })
-
-    document.querySelector('#delBtn').addEventListener("click", () => {
-        document.querySelector('#testDiv1').classList.toggle("disNone");
-    })
-
-    function stmout(a) {
-        console.log(a + " " + b)
-        b++;
-    }
-</script>
-
-<p>
-    <%
-        out.println(str1 + " " + str2);
-    %>
-</p>
+<form action="idx.jsp" method="get">
+    <a href="idx.jsp"></a>
+    <input type="text" id="userId" name="userId" value="id">
+    <br>
+    <input type="password" id="userPwd" name="userPwd" value="pwd">
+    <br>
+    <input type="text" id="addr" name="addr" value="addr">
+    <br>
+    <p>취미</p>
+    <input type="radio" id="hobby_0" name="hobby" value="축구">축구
+    <input type="radio" id="hobby_1" name="hobby" value="야구">야구
+    <p>관심</p>
+    <input type="radio" id="interest_0" name="interest" value="경제">경제
+    <input type="radio" id="interest_1" name="interest" value="시사">시사
+    <br>
+    <p>관심2</p>
+    <input type="checkbox" id="interest_3" name="interest2" value="테니스">테니스
+    <input type="checkbox" id="interest_4" name="interest2" value="농구">농구
+    <input type="checkbox" id="interest_5" name="interest2" value="탁구">탁구
+    <input type="checkbox" id="interest_6" name="interest2" value="하키">하키
+    <br>
+    <input type="submit" value="굳">
+</form>
 </body>
 </html>
