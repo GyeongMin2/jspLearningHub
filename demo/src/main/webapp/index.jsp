@@ -31,7 +31,7 @@
     <input type="checkbox" id="interest_5" name="interest2" value="탁구">탁구
     <input type="checkbox" id="interest_6" name="interest2" value="하키">하키
     <br>
-    <input type="submit" value="굳">
+    <input type="submit" value="굳!~">
 </form>
 </body>
 </html>
