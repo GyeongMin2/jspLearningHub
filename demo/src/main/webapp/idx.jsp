@@ -21,6 +21,9 @@
   <li>주소: <%=request.getParameter("addr")%></li>
   <li>취미: <%=request.getParameter("hobby")%></li>
   <li>관심: <%=request.getParameter("interest")%></li>
+  <li>접속 클라이언트 ip : <%=request.getRemoteAddr()%></li>
+  <li>접속 로컬 ip : <%=request.getLocalAddr()%></li>
+  <li>프로토콜 : <%=request.getProtocol()%></li>
 </ul>
 </body>
 </html>
