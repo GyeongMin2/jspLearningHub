@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ page import="dto.StudentDTO" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,28 +11,19 @@
     <title>Document</title>
 </head>
 <body>
-<form action="idx.jsp" method="get">
-    <a href="idx.jsp"></a>
-    <input type="text" id="userId" name="userId" value="id">
-    <br>
-    <input type="password" id="userPwd" name="userPwd" value="pwd">
-    <br>
-    <input type="text" id="addr" name="addr" value="addr">
-    <br>
-    <p>취미</p>
-    <input type="radio" id="hobby_0" name="hobby" value="축구">축구
-    <input type="radio" id="hobby_1" name="hobby" value="야구">야구
-    <p>관심</p>
-    <input type="radio" id="interest_0" name="interest" value="경제">경제
-    <input type="radio" id="interest_1" name="interest" value="시사">시사
-    <br>
-    <p>관심2</p>
-    <input type="checkbox" id="interest_3" name="interest2" value="테니스">테니스
-    <input type="checkbox" id="interest_4" name="interest2" value="농구">농구
-    <input type="checkbox" id="interest_5" name="interest2" value="탁구">탁구
-    <input type="checkbox" id="interest_6" name="interest2" value="하키">하키
-    <br>
-    <input type="submit" value="굳!~">
-</form>
+<%
+    StudentDTO student = new StudentDTO();
+    student.setName("홍길동");
+    student.setDept("컴퓨터공학");
+    student.setGrade(1);
+    student.setNo("20010905");
+    out.println("이름: " + student.getName() + "<br>");
+    out.println("학과: " + student.getDept() + "<br>");
+    out.println("학년: " + student.getGrade() + "학년 <br>");
+    out.println("학번: " + student.getNo() + "<br>");
+%>
+
+<script>
+</script>
 </body>
 </html>

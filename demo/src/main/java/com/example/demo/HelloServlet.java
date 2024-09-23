@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.io.*;
+
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -21,6 +22,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<h1>" + message + "</h1>");
         out.println("<a href=/demo_war_exploded/index.jsp>back</a>");
         out.println("</body></html>");
+        
     }
 
     public void destroy() {
