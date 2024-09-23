@@ -5,8 +5,22 @@ public class StudentDTO {
     private int grade;
     private String dept;
     private String no;
+    private int age;
 
-    public StudentDTO() {
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public StudentDTO(String no, String name, int grade, int age, String dept) {
+        this.no = no;
+        this.name = name;
+        this.grade = grade;
+        this.age = age;
+        this.dept = dept;
     }
 
     public String getName() {
@@ -39,5 +53,16 @@ public class StudentDTO {
 
     public void setDept(String dept) {
         this.dept = dept;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentDTO{" +
+                "no : '" + no + "', name : '" + name + "', grade : " + grade + ", age : " + age + ", dept : '" + dept + "'}";
+    }
+
+    public String toJSONObject() {
+        return "{" +
+                "no : '" + no + "', name : '" + name + "', grade : " + grade + ", age : " + age + ", dept : '" + dept + "'}";
     }
 }
