@@ -5,6 +5,7 @@
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="DBConnection.UseMySql" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,14 +18,8 @@
 <body>
 
 <%
-    PrintWriter sout = response.getWriter();
-    Connection connection = DbConnection.getConnection();
-    if (connection != null) {
-        sout.println("<p>DB 연결 성공</p>");
-    } else {
-        sout.println("<p>DB 연결 실패</p>");
-    }
-    sout.println("<p> 하 위 </p>");
+    UseMySql dbUtil = new UseMySql();
+    Connection con = dbUtil.getCon();
 %>
 <script>
 </script>
