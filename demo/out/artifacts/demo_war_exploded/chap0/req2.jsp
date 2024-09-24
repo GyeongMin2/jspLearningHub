@@ -17,7 +17,6 @@
 <h2>req2 조회</h2>
 <%
     Object reqStd = request.getAttribute("reqStd") != null ? request.getAttribute("reqStd") : null;
-
 %>
 <%= reqStd.toString() %>
 <br>
