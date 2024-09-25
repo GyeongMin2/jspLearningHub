@@ -6,4 +6,6 @@ public interface DbInfo {
     abstract String getUsername();
 
     abstract String getPassword();
+
+    abstract String getDbType();
 }

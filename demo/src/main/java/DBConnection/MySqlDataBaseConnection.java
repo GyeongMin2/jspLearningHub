@@ -1,16 +1,31 @@
 package DBConnection;
 
-public class MySqlDataBaseConnection implements DbInfo {
-    //    public DataBaseConnection() {
-//    }
-    private static String JDBC_URL = null;
-    private static String USERNAME = null;
-    private static String PASSWORD = null;
+import jakarta.servlet.ServletContext;
 
-    MySqlDataBaseConnection(String url, String username, String password) {
-        this.JDBC_URL = url;
-        this.USERNAME = username;
-        this.PASSWORD = password;
+public class MySqlDataBaseConnection implements DbInfo {
+    private final String JDBC_URL;
+    private final String DBTYPE;
+    private final String USERNAME;
+    private final String PASSWORD;
+
+    //
+//    com.mysql.cj.jdbc.Driver
+//    jdbc:mysql://localhost:3306/fullstack7
+//    root
+//    kgm101
+    // db정보는 여기서 입력
+    public MySqlDataBaseConnection() {
+        this.DBTYPE = "mysql";
+        this.JDBC_URL = "jdbc:mysql://localhost:3306/fullstack7";
+        this.USERNAME = "root";
+        this.PASSWORD = "kgm101";
+    }
+
+    public MySqlDataBaseConnection(ServletContext servletContext) {
+        this.DBTYPE = servletContext.getInitParameter("DBTYPE");
+        this.JDBC_URL = servletContext.getInitParameter("JDBC_URL");
+        this.USERNAME = servletContext.getInitParameter("USERNAME");
+        this.PASSWORD = servletContext.getInitParameter("PASSWORD");
     }
 
     @Override
@@ -26,6 +41,11 @@ public class MySqlDataBaseConnection implements DbInfo {
     @Override
     public String getPassword() {
         return PASSWORD;
+    }
+
+    @Override
+    public String getDbType() {
+        return DBTYPE;
     }
 
 }

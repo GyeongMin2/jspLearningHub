@@ -24,9 +24,7 @@
         <label for="userId">아이디</label>
         <input type="text" name="userId" id="userId"
                value="<%=
-               getCookie(request.getCookies(), "autoLoginFlag") != null && getCookie(request.getCookies(), "autoLoginFlag").equals("true") ?
-                getCookie(request.getCookies(), "user_id")
-                : "" %>">
+               getCookie(request.getCookies(), "autoLoginFlag") != null && getCookie(request.getCookies(), "autoLoginFlag").equals("true") ?getCookie(request.getCookies(), "user_id") : "" %>">
         <label for="userPwd">비밀번호</label>
         <input type="password" name="userPwd" id="userPwd">
         <label for="autoLogin">아이디 저장</label>

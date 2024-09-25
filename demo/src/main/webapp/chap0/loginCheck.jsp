@@ -22,7 +22,7 @@
 </head>
 <body>
 <%
-
+    
     String autoLogin = request.getParameter("autoLogin") != null ? request.getParameter("autoLogin") : "";
     String userId = request.getParameter("userId") != null ? request.getParameter("userId") : "";
 
@@ -34,6 +34,7 @@
         setCookie("user_id", "", 0, request, response);
     }
     response.sendRedirect("login.jsp");
+
 %>
 </body>
 </html>
