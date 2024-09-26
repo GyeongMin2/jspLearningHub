@@ -15,7 +15,7 @@ public class DbConnection implements AutoCloseable {
     private DbInfo dbInfo;
 
     private DbConnection() {
-        //커넥션풀 사용
+        //커넥션풀 사용dgvasdfjioasdfjklasdj
     }
 
     private DbConnection(DbInfo dbInfo) {
