@@ -21,12 +21,12 @@ public class MySqlDataBaseConnection implements DbInfo {
         this.PASSWORD = "kgm101";
     }
 
-    public MySqlDataBaseConnection(ServletContext servletContext) {
-        this.DBTYPE = servletContext.getInitParameter("DBTYPE");
-        this.JDBC_URL = servletContext.getInitParameter("JDBC_URL");
-        this.USERNAME = servletContext.getInitParameter("USERNAME");
-        this.PASSWORD = servletContext.getInitParameter("PASSWORD");
-    }
+//    public MySqlDataBaseConnection(ServletContext servletContext) {
+//        this.DBTYPE = servletContext.getInitParameter("DBTYPE");
+//        this.JDBC_URL = servletContext.getInitParameter("JDBC_URL");
+//        this.USERNAME = servletContext.getInitParameter("USERNAME");
+//        this.PASSWORD = servletContext.getInitParameter("PASSWORD");
+//    }
 
     @Override
     public String getUrl() {
@@ -41,11 +41,6 @@ public class MySqlDataBaseConnection implements DbInfo {
     @Override
     public String getPassword() {
         return PASSWORD;
-    }
-
-    @Override
-    public String getDbType() {
-        return DBTYPE;
     }
 
 }

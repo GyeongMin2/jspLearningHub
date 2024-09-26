@@ -6,6 +6,14 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <session-config>
+        <session-timeout>
+            1
+            <!-- 분 단위임 -->
+        </session-timeout>
+    </session-config>
+
     <context-param>
         <param-name>MySqlDBType</param-name>
         <param-value>mysql</param-value>
@@ -26,5 +34,5 @@
         <param-name>MySqlPWD</param-name>
         <param-value>kgm101</param-value>
     </context-param>
-    
+
 </web-app>

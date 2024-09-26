@@ -32,6 +32,7 @@ public class DbConnection implements AutoCloseable {
         return instance;
     }
 
+
     //connectionPool 은 지금 설정파일에 mysql만 있어서 그거밖에 못씀 ㅅㄱ
     //리턴타입 connection
     public Connection connectWithConnectionPool() {

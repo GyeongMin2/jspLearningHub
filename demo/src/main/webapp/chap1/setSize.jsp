@@ -3,5 +3,6 @@
 <%
     Integer rowsPerPage = request.getParameter("pageSize") != null ? Integer.parseInt(request.getParameter("pageSize")) : 5;
     session.setAttribute("pageSize", rowsPerPage);
-    response.sendRedirect("paging.jsp?page=1"); // 설정 변경 후 첫 페이지로 이동
+    session.setMaxInactiveInterval(60 * 60);
+    response.sendRedirect("paging.jsp?page=1");
 %>

@@ -1,102 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="DBConnection.DbConnection" %>
-<%@ page import="java.sql.*" %>
-<!DOCTYPE html>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.LinkedHashMap" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Map" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: full5-8
+  Date: 2024-09-26
+  Time: PM 2:19
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    LinkedHashMap<String, String> sessionInfoMap = new LinkedHashMap<>();
+    sessionInfoMap.put("세션최초 요청시간 : ", dateFormat.format(new Date(session.getCreationTime())));
+    sessionInfoMap.put("세션마지막 요청시간 : ", dateFormat.format(new Date(session.getLastAccessedTime())));
+    sessionInfoMap.put("세션 유지시간 :", String.valueOf(session.getMaxInactiveInterval()));
+    sessionInfoMap.put("세션 아이디 : ", session.getId());
+%>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>index</title>
+    <title>Title</title>
 </head>
 <body>
+<h2>session 설정 확인</h2>
 <%
-    String sql = "SELECT userId,name,addr1,addr2 FROM tbl_member";
-    try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-         Connection connection = dbConnection.connectDirect();
-         Statement statement = connection.createStatement();
-//         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-         ResultSet result = statement.executeQuery(sql)
-    ) {
-        ResultSetMetaData metaData = result.getMetaData();
-        int columnCount = metaData.getColumnCount();
-        out.println("<table>");
-        out.println("<tr>");
-
-        //
-        for (int i = 1; i <= columnCount; i++) {
-            out.print("<th>" + metaData.getColumnName(i) + "</th>");
+    try {
+        out.println("<ul>");
+        for (Map.Entry<String, String> entry : sessionInfoMap.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            out.println("<li>" + key + value + "</li>");
         }
-        out.println("</tr>");
-
-        while (result.next()) {
-            out.println("<tr>");
-            for (int i = 1; i <= columnCount; i++) {
-                if (i == 1) {
-                    out.print("<td>");
-//                    out.print("<form action='memberView.jsp' method='get'>");
-//                    out.print("<input type='hidden' name='userId' value='" + result.getString(i) + "'>");
-//                    out.print("<input type='submit' value='" + result.getString(i) + "'>");
-//                    out.print("</form>");
-                    out.print("<a href='memberView.jsp?userId=" + result.getString(i) + "'>");
-                    out.print(result.getString(i));
-                    out.print("</a>");
-                    out.print("</td>");
-                } else {
-                    out.print("<td>" + result.getString(i) + "</td>");
-                }
-            }
-            out.println("</tr>");
-        }
-
-        out.println("</table>");
-        out.println("<style>");
-        out.println("table>th,td{border: 1px solid black; padding : 10px;}");
-        out.println("</style>");
-
+        out.println("</ul>");
     } catch (Exception e) {
-        e.printStackTrace();
+        out.println("<p>오류남 : " + e.getMessage() + "</p>");
     }
 %>
-<br><br><br>
-<form action="register.jsp" method="post">
-    <table>
-        <tr>
-            <th>userId</th>
-            <th>name</th>
-            <th>pwd</th>
-            <th>ssn</th>
-            <th>addr1</th>
-            <th>addr2</th>
-            <th>birthday</th>
-            <th>jobCode</th>
-        </tr>
-        <tr>
-            <td><input type="text" id="userId" name="userId" required></td>
-            <td><input type="text" id="name" name="name"></td>
-            <td><input type="password" id="pwd" name="pwd" required></td>
-            <td><input type="text" id="ssn" name="ssn"></td>
-            <td><input type="text" id=addr1 name="addr1"></td>
-            <td><input type="text" id="addr2" name="addr2"></td>
-            <td><input type="date" id="birthday" name="birthday" required></td>
-            <td><input type="text" id="jobCode" name="jobCode"></td>
-        </tr>
-    </table>
-    <br>
-    <button type="submit">전송뿅</button>
-</form>
-<script>
-    // document.querySelector("form").addEventListener("submit", (event) => {
-    //     event.preventDefault();
-    //     const userInfo = {
-    //         userId: document.querySelector("#userId"),
-    //         name: document.querySelector("#name"),
-    //         pwd: document.querySelector("#pwd"),
-    //         ssn: document.querySelector("#ssn"),
-    //         addr1: document.querySelector("#addr1"),
-    //         addr2: document.querySelector("#addr2"),
-    //         birthday: document.querySelector("#birthday"),
-    //         jobCode: document.querySelector("#jobCode")
-    //     };
-    // });
-</script>
 </body>
 </html>
