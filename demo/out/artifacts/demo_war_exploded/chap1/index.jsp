@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -10,8 +10,8 @@
 <body>
 <%
     String sql = "SELECT userId,name,addr1,addr2 FROM tbl_member";
-    try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-         Connection connection = dbConnection.connectDirect();
+    try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+         Connection connection = databaseConnectionManager.connectDirect();
          Statement statement = connection.createStatement();
 //         PreparedStatement preparedStatement = connection.prepareStatement(sql);
          ResultSet result = statement.executeQuery(sql)

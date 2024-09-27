@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%!
     // 최대 페이지 수 계산 메서드
     private Integer getMaxPageNum(Integer rowsPerPage) {
         // 페이지 수 계산 쿼리
         String sql = "SELECT CEIL(COUNT(*) /" + rowsPerPage + ") FROM tbl_member";
-        try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-             Connection connection = dbConnection.connectWithConnectionPool();
+        try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+             Connection connection = databaseConnectionManager.connectWithConnectionPool();
              Statement statement = connection.createStatement();
              ResultSet result = statement.executeQuery(sql)) {
             if (result.next()) {
@@ -35,8 +36,8 @@
 
     String sql = "SELECT userId, name, addr1 FROM tbl_member LIMIT ? OFFSET ?";
 
-    try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-         Connection connection = dbConnection.connectDirect();
+    try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+         Connection connection = databaseConnectionManager.connectDirect();
          PreparedStatement statement = connection.prepareStatement(sql)) {
 
         statement.setInt(1, rowsPerPage);

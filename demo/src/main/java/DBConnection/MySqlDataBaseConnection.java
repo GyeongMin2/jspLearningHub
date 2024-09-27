@@ -1,7 +1,5 @@
 package DBConnection;
 
-import jakarta.servlet.ServletContext;
-
 public class MySqlDataBaseConnection implements DbInfo {
     private final String JDBC_URL;
     private final String DBTYPE;

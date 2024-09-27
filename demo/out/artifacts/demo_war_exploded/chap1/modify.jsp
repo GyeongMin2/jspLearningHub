@@ -1,6 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 Created by IntelliJ IDEA.
 User: full5-8
 Date: 2024-09-25
@@ -45,8 +46,8 @@ To change this template use File | Settings | File Templates.
             userInfoMap.remove("userId");
             try {
                 String sql = "UPDATE tbl_member SET name = ?, pwd = ?, ssn = ?, addr1 = ?, addr2 = ?, birthday = ?, jobCode = ?, mileage = ?, memberState = ? WHERE userId = ?";
-                try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-                     Connection connection = dbConnection.connectDirect();
+                try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+                     Connection connection = databaseConnectionManager.connectDirect();
                      PreparedStatement statement = connection.prepareStatement(sql)) {
 
                     int index = 1;

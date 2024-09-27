@@ -3,10 +3,11 @@
 <%@ page import="dto.StudentDTO" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
     }
 </style>
 <%
-    Connection connection = DbConnection.getConnection();
+    Connection connection = DatabaseConnectionManager.getConnection();
     String sql;
     PreparedStatement statement = null;
     sql = "";

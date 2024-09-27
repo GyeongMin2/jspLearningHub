@@ -5,10 +5,11 @@
   Time: PM 2:25
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%!
@@ -59,8 +60,8 @@
         //INSERT INTO tbl_member (userId, name, pwd, ssn, addr1, addr2, birthday, jobCode) VALUES
         try {
             String sql = "INSERT INTO tbl_member (userId, name, pwd, ssn, addr1, addr2, birthday, jobCode) VALUES(?,?,sha2(?,256),?,?,?,?,?)";
-            try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-                 Connection connection = dbConnection.connectDirect();
+            try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+                 Connection connection = databaseConnectionManager.connectDirect();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, userInfoMap.get("userId"));
                 statement.setString(2, userInfoMap.get("name"));

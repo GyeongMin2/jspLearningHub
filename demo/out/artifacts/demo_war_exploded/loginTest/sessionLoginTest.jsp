@@ -19,7 +19,7 @@
 <body>
 <div class="loginForm displayNone">
     <h2>로그인</h2>
-    <form action="loginSession.jsp" method="post">
+    <form action="loginSessionTest.jsp" method="post">
         <table>
             <tr>
                 <td>아이디:</td>

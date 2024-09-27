@@ -1,8 +1,9 @@
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.PreparedStatement" %><%--
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %><%--
   Created by IntelliJ IDEA.
   User: full5-8
   Date: 2024-09-25
@@ -22,8 +23,8 @@
             String userId = request.getParameter("userId");
             String sql = "SELECT * FROM TBL_MEMBER WHERE USERID=?";
 
-            try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-                 Connection connection = dbConnection.connectDirect();
+            try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+                 Connection connection = databaseConnectionManager.connectDirect();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, userId);
                 try (ResultSet result = statement.executeQuery()) {

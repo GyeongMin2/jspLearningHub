@@ -1,43 +1,32 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.LinkedHashMap" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: full5-8
-  Date: 2024-09-26
-  Time: PM 2:19
+  Date: 2024-09-27
+  Time: AM 10:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="fullstack7.member.MemberDTO" %>
 <%
-    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-    LinkedHashMap<String, String> sessionInfoMap = new LinkedHashMap<>();
-    sessionInfoMap.put("세션최초 요청시간 : ", dateFormat.format(new Date(session.getCreationTime())));
-    sessionInfoMap.put("세션마지막 요청시간 : ", dateFormat.format(new Date(session.getLastAccessedTime())));
-    sessionInfoMap.put("세션 유지시간 :", String.valueOf(session.getMaxInactiveInterval()));
-    sessionInfoMap.put("세션 아이디 : ", session.getId());
+    // 로그인상태체크
+    if (!"true".equals(session.getAttribute("logInFlag"))) {
+        response.sendRedirect("login.jsp"); //로그인 안되면 login.jsp 로 리다이렉트
+    } else {
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>메인 페이지</title>
 </head>
 <body>
-<h2>session 설정 확인</h2>
-<%
-    try {
-        out.println("<ul>");
-        for (Map.Entry<String, String> entry : sessionInfoMap.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            out.println("<li>" + key + value + "</li>");
-        }
-        out.println("</ul>");
-    } catch (Exception e) {
-        out.println("<p>오류남 : " + e.getMessage() + "</p>");
-    }
-%>
+<h2>환영합니다, <%= member.getName() %>님!</h2>
+<form action="logout.jsp" method="post" style="text-align: center;">
+    <input type="submit" value="로그아웃">
+</form>
 </body>
 </html>
+<%
+    }
+%>

@@ -3,26 +3,22 @@ package dbModule;
 import java.sql.*;
 import java.util.*;
 
-import DBConnection.DbConnection;
+import DBConnection.DatabaseConnectionManager;
 
 public class MySqlDbModule implements DbModuleInterFace, AutoCloseable {
     private Connection connection;
-    private DbConnection dbConnection;
+    private DatabaseConnectionManager databaseConnectionManager;
 
-    // 기본 생성자: 커넥션 풀을 사용하는 경우
+    //커넥션풀사용
     public MySqlDbModule() throws SQLException {
-        this.dbConnection = DbConnection.getInstance("mysql"); // 싱글톤 인스턴스 가져오기
-        this.connection = dbConnection.connectWithConnectionPool();
+        databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql", true);
+        this.connection = databaseConnectionManager.connect();
     }
 
-    // 직접 연결을 사용하는 생성자
+    //직접연결 사용
     public MySqlDbModule(boolean directConnection) throws SQLException {
-        this.dbConnection = DbConnection.getInstance("mysql"); // 싱글톤 인스턴스 가져오기
-        if (directConnection) {
-            this.connection = dbConnection.connectDirect();
-        } else {
-            this.connection = dbConnection.connectWithConnectionPool();
-        }
+        databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql", false);
+        this.connection = databaseConnectionManager.connect();
     }
 
     @Override
@@ -96,10 +92,9 @@ public class MySqlDbModule implements DbModuleInterFace, AutoCloseable {
         return 0;
     }
 
-
     private int executeUpdate(String sql) {
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            return pstmt.executeUpdate(sql);
+            return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -121,16 +116,16 @@ public class MySqlDbModule implements DbModuleInterFace, AutoCloseable {
         return resultList;
     }
 
-    //autoCloseAble 구현
+    //자동닫기
     @Override
     public void close() {
         try {
-            if (dbConnection != null) {
-                dbConnection.close();
+            if (databaseConnectionManager != null) {
+                databaseConnectionManager.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("MySqlDbModule close exception :" + e.getMessage());
         }
     }
-
 }

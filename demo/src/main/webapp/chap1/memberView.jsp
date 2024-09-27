@@ -5,13 +5,14 @@
   Time: PM 3:43
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="DBConnection.DbConnection" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.security.Key" %>
 <%@ page import="com.sun.jdi.Value" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.LinkedHashMap" %>
+<%@ page import="DBConnection.DatabaseConnectionManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <html>
@@ -23,8 +24,8 @@
     String sql = "SELECT userId, name, pwd, ssn, addr1, addr2, birthday, jobCode, mileage, memberState FROM TBL_MEMBER WHERE USERID=?";
     String userId = request.getParameter("userId");
     Map<String, String> userInfoMap = new LinkedHashMap<>();
-    try (DbConnection dbConnection = DbConnection.getInstance("mysql");
-         Connection connection = dbConnection.connectDirect();
+    try (DatabaseConnectionManager databaseConnectionManager = DatabaseConnectionManager.getInstance("mysql");
+         Connection connection = databaseConnectionManager.connectDirect();
          PreparedStatement statement = connection.prepareStatement(sql);
     ) {
         statement.setString(1, userId);
