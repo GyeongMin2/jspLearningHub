@@ -52,7 +52,7 @@
     <input type="checkbox" id="selectAll"> 전체 선택
     <script>
         // "전체 선택" 체크박스를 선택/해제할 때마다 실행
-        document.querySelector('#selectAll').addEventListener('change', function () {
+        document.querySelector('#selectAll').addEventListener('change', () => {
             const checkboxes = document.querySelectorAll('.delCheckBox');
             checkboxes.forEach(checkbox => {
                 checkbox.checked = this.checked;
@@ -61,7 +61,7 @@
 
         const itemCheckboxes = document.querySelectorAll('.delCheckBox');
         itemCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
+            checkbox.addEventListener('change', () => {
                 const allChecked = document.querySelectorAll('.delCheckBox:checked').length === itemCheckboxes.length;
                 document.getElementById('selectAll').checked = allChecked;
             });

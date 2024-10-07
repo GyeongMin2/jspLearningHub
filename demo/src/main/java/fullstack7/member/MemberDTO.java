@@ -1,5 +1,6 @@
 package fullstack7.member;
 
+import java.lang.reflect.Member;
 import java.util.*;
 
 import java.time.LocalDateTime;
@@ -7,7 +8,33 @@ import java.time.LocalDateTime;
 public class MemberDTO extends AbstractMember {
 
     private String AutoLoginFlag;
+
     //자동로그인 flag 추가
+    public MemberDTO() {
+    }
+
+    public MemberDTO(String userId, String name, String pwd, String ssn, String addr1, String addr2, String birthday,
+                     String jobCode, Integer mileage, String memberState, LocalDateTime regDate,
+                     LocalDateTime pwdChangeDate) {
+        this.userId = userId;
+        this.name = name;
+        this.pwd = pwd;
+        this.ssn = ssn;
+        this.addr1 = addr1;
+        this.addr2 = addr2;
+        this.birthday = birthday;
+        this.jobCode = jobCode;
+        this.mileage = mileage;
+        this.memberState = memberState;
+        this.regDate = regDate;
+        this.pwdChangeDate = pwdChangeDate;
+    }
+
+    public MemberDTO(String userId, String name, String pwd) {
+        this.userId = userId;
+        this.name = name;
+        this.pwd = pwd;
+    }
 
 
     public String getUserId() {
